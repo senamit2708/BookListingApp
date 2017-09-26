@@ -7,12 +7,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class BooksList extends AppCompatActivity {
 
+//    public static final String SAMPLE_JSON_RESPONSE = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,18 +29,25 @@ public class BooksList extends AppCompatActivity {
 
 
 
-        ArrayList<Books> booksArrayList = new ArrayList<Books>();
+//        ArrayList<Books> booksArrayList = new ArrayList<Books>();
+
+        ArrayList<Books> booksArrayList = null;
+        try {
+            booksArrayList = QueryUtils.extractFeatureFromJSON();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
-
-        booksArrayList.add(new Books("Amit","Life is fun "));
-        booksArrayList.add(new Books("Vikash","My life my rules"));
-        booksArrayList.add(new Books("Rakesh","Dont angry me"));
-        booksArrayList.add(new Books("Ashok","Live life as king"));
-        booksArrayList.add(new Books("pretam","Life is great"));
-        booksArrayList.add(new Books("mohan","My life dont know"));
-        booksArrayList.add(new Books("agnish","Dont angry  someone"));
-        booksArrayList.add(new Books("PPDA","Live life is hell"));
+//
+//        booksArrayList.add(new Books("Amit","Life is fun "));
+//        booksArrayList.add(new Books("Vikash","My life my rules"));
+//        booksArrayList.add(new Books("Rakesh","Dont angry me"));
+//        booksArrayList.add(new Books("Ashok","Live life as king"));
+//        booksArrayList.add(new Books("pretam","Life is great"));
+//        booksArrayList.add(new Books("mohan","My life dont know"));
+//        booksArrayList.add(new Books("agnish","Dont angry  someone"));
+//        booksArrayList.add(new Books("PPDA","Live life is hell"));
 
 
 
