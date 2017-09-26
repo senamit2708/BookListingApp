@@ -15,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
+    public String getSubject_name() {
+        return subject_name;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private void intentFunction(){
 
         Intent intent = new Intent(MainActivity.this, BooksList.class);
+        intent.putExtra("search",subject_name);
         startActivity(intent);
     }
 

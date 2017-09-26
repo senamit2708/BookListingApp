@@ -332,7 +332,8 @@ public class QueryUtils {
 //
 //
 //            }
-            author = jsonAuthor.optString(0);
+//            author = jsonAuthor.optString(0);
+            author = "sen";
 
 //
 

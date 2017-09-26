@@ -1,5 +1,6 @@
 package com.example.senamit.booklistingapp;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,17 +20,34 @@ public class BooksList extends AppCompatActivity {
 
     public static final String LOG_TAG = BooksList.class.getSimpleName();
 //    public static final String SAMPLE_JSON_RESPONSE = null;
-    public static final String SAMPLE_JSON_URL = " https://www.googleapis.com/books/v1/volumes?q=android&maxResults=5";
+//    public static final String SAMPLE_JSON_URL = " https://www.googleapis.com/books/v1/volumes?q=android&maxResults=5";
+
+    public static final String SAMPLE_JSON_URL = "https://www.googleapis.com/books/v1/volumes";
 
     BooksAdapter booksAdapter;
+    final String QUERY_PARAM = "q";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books_list);
 
+//        fun1();
+
+//        MainActivity obj1 = new MainActivity();
+//      String name = obj1.getSubject_name();
+         String name= getIntent().getExtras().getString("search");
+
+
+        Uri builtUri = Uri.parse(SAMPLE_JSON_URL).buildUpon()
+                .appendQueryParameter(QUERY_PARAM,name ).build();
+
+        Log.i(LOG_TAG,"the name is  "+ name);
+
+        Log.i(LOG_TAG,"the uri is  "+builtUri.toString());
 
         BookSearchAsyncTask bookSearchAsyncTask = new BookSearchAsyncTask();
-        bookSearchAsyncTask.execute(SAMPLE_JSON_URL);
+        bookSearchAsyncTask.execute(builtUri.toString());
 
 
 
@@ -74,4 +92,5 @@ public class BooksList extends AppCompatActivity {
 
         }
     }
+
 }
