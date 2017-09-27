@@ -1,7 +1,9 @@
 package com.example.senamit.booklistingapp;
 
+import android.media.Image;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -305,6 +307,8 @@ public class QueryUtils {
     //A value in the JSON may be optional, so using optJSONObject is better because you just have to check if it is null or not and continue your function.
     public static ArrayList<Books> extractFeatureFromJSON(String jsonResponse) throws JSONException {
 
+
+
         if (TextUtils.isEmpty(jsonResponse)){
             return null;
         }
@@ -324,24 +328,32 @@ public class QueryUtils {
 
             JSONArray jsonAuthor = jsonVolumeInfo.optJSONArray("authors");
 
+            String url = jsonVolumeInfo.optString("infoLink");
+
+
+
             title = jsonVolumeInfo.optString("title");
             //what if we have more than one author for a book
-//            for (int j=0; j<jsonAuthor.length(); j++)
-//            {
-//                 author = jsonAuthor.optString(i);
-//
-//
-//            }
-//            author = jsonAuthor.optString(0);
-            author = "sen";
+
+            StringBuilder output = new StringBuilder();
+            for (int j=0; j<jsonAuthor.length(); j++)
+            {
+                 author = jsonAuthor.optString(j);
+                output.append(author);
+
+
+            }
+
 
 //
 
-            books.add(new Books(title, author));
+            books.add(new Books(title, output.toString(),url));
+            Log.i(LOG_TAG, "author name  "+ output.toString());
+            Log.i(LOG_TAG,"link  "+url);
         }
 
 
-        Log.i(LOG_TAG, "inside extractFeatureFromJSON");
+
         return books;
     }
 

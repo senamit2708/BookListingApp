@@ -1,11 +1,14 @@
 package com.example.senamit.booklistingapp;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -26,6 +29,7 @@ public class BooksList extends AppCompatActivity {
 
     BooksAdapter booksAdapter;
     final String QUERY_PARAM = "q";
+    final String MAX_LIMIT ="maxResults";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,8 @@ public class BooksList extends AppCompatActivity {
 
 
         Uri builtUri = Uri.parse(SAMPLE_JSON_URL).buildUpon()
-                .appendQueryParameter(QUERY_PARAM,name ).build();
+                .appendQueryParameter(QUERY_PARAM,name )
+                .appendQueryParameter(MAX_LIMIT, "15").build();
 
         Log.i(LOG_TAG,"the name is  "+ name);
 
@@ -60,6 +65,19 @@ public class BooksList extends AppCompatActivity {
 
 
         listView.setAdapter(booksAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Books selectedBook = booksAdapter.getItem(i);
+                Uri bookUri = Uri.parse(selectedBook.getUrl());
+
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, bookUri);
+                startActivity(websiteIntent);
+            }
+        });
+
     }
 
     private class BookSearchAsyncTask extends AsyncTask<String, Void, ArrayList<Books>>{

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="@drawable/shape_round"
     android:layout_height="match_parent">
 
 
@@ -10,12 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txt_author"
+        android:gravity="center_horizontal"
         tools:text="author"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txt_title"
+        android:gravity="center_horizontal"
         tools:text="title"/>
 
 

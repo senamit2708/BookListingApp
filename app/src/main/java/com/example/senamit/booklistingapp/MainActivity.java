@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
      final EditText search_box = (EditText)findViewById(R.id.search_box);
 
-        final TextView txt_output = (TextView)findViewById(R.id.txt_output);
+//        final TextView txt_output = (TextView)findViewById(R.id.txt_output);
 
         Button btn_search = (Button)findViewById(R.id.btn_search);
         btn_search.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
              subject_name =  search_box.getText().toString();
                 Log.i(LOG_TAG, "the search text is  "+ search_box.getText());
 
-                txt_output.setText(subject_name);
+//                txt_output.setText(subject_name);
 
                 intentFunction();
             }
