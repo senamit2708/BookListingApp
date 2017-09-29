@@ -18,27 +18,19 @@ import java.util.ArrayList;
 
 public class BooksAdapter extends ArrayAdapter<Books> {
 
-
-
     public BooksAdapter(Context context, ArrayList<Books> booksArrayList){
         super(context, 0, booksArrayList);
-
-    };
-
+    }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-
-
         View listItemView = convertView;
+        Books books = getItem(position);
         if (listItemView ==null){
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.activity_books_items,parent, false );
-
         }
-
-        Books books = getItem(position);
 
         TextView txt_author = (TextView)listItemView.findViewById(R.id.txt_author);
         txt_author.setText(books.getAuthors());
@@ -46,10 +38,8 @@ public class BooksAdapter extends ArrayAdapter<Books> {
         TextView txt_title = (TextView)listItemView.findViewById(R.id.txt_title);
         txt_title.setText(books.getTitle());
 
-
-
-
-
+        ImageView imageView = (ImageView)listItemView.findViewById(R.id.image);
+        imageView.setImageBitmap(books.getBitmap());
 
         return listItemView;
     }

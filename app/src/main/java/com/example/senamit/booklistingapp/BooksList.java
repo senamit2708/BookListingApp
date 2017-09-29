@@ -1,5 +1,6 @@
 package com.example.senamit.booklistingapp;
 
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -9,9 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import org.json.JSONException;
-
 import java.util.ArrayList;
 
 
@@ -29,6 +28,8 @@ public class BooksList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books_list);
 
+
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
          String name= getIntent().getExtras().getString("search");
 
 

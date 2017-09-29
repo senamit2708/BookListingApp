@@ -1,6 +1,8 @@
 package com.example.senamit.booklistingapp;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Log;
 import org.json.JSONArray;
@@ -31,23 +33,41 @@ public class QueryUtils {
             return null;
         }
         ArrayList<Books> books= new ArrayList<Books>();
-        String author=null;
+        String authors=null;
         String title=null;
+        Bitmap bmp=null;
+        String url=null;
+        InputStream inputStream = null;
         JSONObject baseJsonObject =new  JSONObject(jsonResponse);
         JSONArray jsonItemsArray = baseJsonObject.optJSONArray("items");
         for (int i=0; i<jsonItemsArray.length(); i++){
             JSONObject jsonItemObject = jsonItemsArray.optJSONObject(i);
             JSONObject jsonVolumeInfo = jsonItemObject.optJSONObject("volumeInfo");
             JSONArray jsonAuthor = jsonVolumeInfo.optJSONArray("authors");
-            String url = jsonVolumeInfo.optString("infoLink");
+            JSONObject jsonImageLink = jsonVolumeInfo.optJSONObject("imageLinks");
+            url = jsonVolumeInfo.optString("infoLink");
             title = jsonVolumeInfo.optString("title");
+            String image = jsonImageLink.optString("smallThumbnail");
+
             StringBuilder output = new StringBuilder();
             for (int j=0; j<jsonAuthor.length(); j++)
             {
-                 author = jsonAuthor.optString(j);
-                output.append(author);
+                 authors = jsonAuthor.optString(j);
+                if (j!=0)
+                {
+                    output.append(", ");
+                }
+                output.append(authors);
             }
-            books.add(new Books(title, output.toString(),url));
+
+            try {
+                inputStream = new URL(image).openStream();
+                bmp = BitmapFactory.decodeStream(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            books.add(new Books(title, output.toString(),url,bmp ));
             Log.i(LOG_TAG, "author name  "+ output.toString());
             Log.i(LOG_TAG,"link  "+url);
         }
