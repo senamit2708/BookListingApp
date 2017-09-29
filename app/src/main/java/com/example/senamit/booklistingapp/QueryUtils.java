@@ -52,6 +52,7 @@ public class QueryUtils {
             Log.i(LOG_TAG,"link  "+url);
         }
         return books;
+
     }
 
 
