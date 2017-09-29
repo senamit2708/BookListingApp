@@ -16,6 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:inputType="text"
+            android:maxLines="1"
+            android:background="@drawable/rounded_edittext"
             android:hint="Subject Name" />
 
 

@@ -6,11 +6,11 @@
        android:startColor="@android:color/darker_gray"
         android:endColor="@android:color/darker_gray"/>
 
-    <corners
-        android:bottomLeftRadius="27dp"
-        android:bottomRightRadius="27dp"
-        android:topLeftRadius="27dp"
-        android:topRightRadius="27dp" />
+    <!--<corners-->
+        <!--android:bottomLeftRadius="27dp"-->
+        <!--android:bottomRightRadius="27dp"-->
+        <!--android:topLeftRadius="27dp"-->
+        <!--android:topRightRadius="27dp" />-->
 
 
 </shape>

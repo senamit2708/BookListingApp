@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txt_author"
         android:gravity="center_horizontal"
+        android:textSize="18sp"
         tools:text="author"/>
 
     <TextView
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txt_title"
         android:gravity="center_horizontal"
+        android:textSize="12sp"
         tools:text="title"/>
 
 
