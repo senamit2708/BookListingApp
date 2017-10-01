@@ -1,6 +1,10 @@
 package com.example.senamit.booklistingapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +26,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        if (!CheckNetwork.isInternetAvailable(getApplicationContext())){
+
+//            Toast.makeText(MainActivity.this, "Internet Connection not available", Toast.LENGTH_SHORT).show();
+            AlertDialogSettingFragment alertDialogSettingFragment= new AlertDialogSettingFragment();
+            alertDialogSettingFragment.show(getSupportFragmentManager(), "Alert Dialog");
+
+            Log.i(LOG_TAG, "inside dialog box"); }
+
         search_box= (EditText)findViewById(R.id.search_box);
 
         search_box.setOnKeyListener(new View.OnKeyListener() {
@@ -43,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
+
+
+
                 subject_name =  search_box.getText().toString();
                 Log.e(LOG_TAG, "checking the value on search   "+subject_name);
                 InputSubjectCheck();

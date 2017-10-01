@@ -35,7 +35,7 @@ public class BooksList extends AppCompatActivity {
 
         Uri builtUri = Uri.parse(SAMPLE_JSON_URL).buildUpon()
                 .appendQueryParameter(QUERY_PARAM,name )
-                .appendQueryParameter(MAX_LIMIT, "15").build();
+                .appendQueryParameter(MAX_LIMIT, "2").build();
 
         Log.i(LOG_TAG,"the name is  "+ name);
 
