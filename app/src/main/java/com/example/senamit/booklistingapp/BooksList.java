@@ -1,9 +1,12 @@
 package com.example.senamit.booklistingapp;
 
 
+import android.app.LoaderManager;
 import android.content.Intent;
+import android.content.Loader;
 import android.net.Uri;
 import android.os.AsyncTask;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,16 +15,17 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import org.json.JSONException;
 import java.util.ArrayList;
+import java.util.List;
 
 
-
-public class BooksList extends AppCompatActivity {
+public class BooksList extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Books>> {
 
     public static final String LOG_TAG = BooksList.class.getSimpleName();
     public static final String SAMPLE_JSON_URL = "https://www.googleapis.com/books/v1/volumes";
     BooksAdapter booksAdapter;
     final String QUERY_PARAM = "q";
     final String MAX_LIMIT ="maxResults";
+    Uri builtUri= null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,7 @@ public class BooksList extends AppCompatActivity {
          String name= getIntent().getExtras().getString("search");
 
 
-        Uri builtUri = Uri.parse(SAMPLE_JSON_URL).buildUpon()
+         builtUri = Uri.parse(SAMPLE_JSON_URL).buildUpon()
                 .appendQueryParameter(QUERY_PARAM,name )
                 .appendQueryParameter(MAX_LIMIT, "2").build();
 
@@ -41,8 +45,8 @@ public class BooksList extends AppCompatActivity {
 
         Log.i(LOG_TAG,"the uri is  "+builtUri.toString());
 
-        BookSearchAsyncTask bookSearchAsyncTask = new BookSearchAsyncTask();
-        bookSearchAsyncTask.execute(builtUri.toString());
+//        BookSearchAsyncTask bookSearchAsyncTask = new BookSearchAsyncTask();
+//        bookSearchAsyncTask.execute(builtUri.toString());
         booksAdapter = new BooksAdapter(getBaseContext(), new ArrayList<Books>());
         ListView listView = (ListView) (findViewById(R.id.list_item));
         listView.setAdapter(booksAdapter);
@@ -55,33 +59,58 @@ public class BooksList extends AppCompatActivity {
                 startActivity(websiteIntent);
             }
         });
+
+        getLoaderManager().initLoader(0, null, this);
     }
 
-    private class BookSearchAsyncTask extends AsyncTask<String, Void, ArrayList<Books>>{
-        @Override
-        protected ArrayList<Books> doInBackground(String... url) {
+    @Override
+    public Loader<List<Books>> onCreateLoader(int i, Bundle bundle) {
+        Log.e(LOG_TAG, "inside oncreate loader");
 
-            Log.i(LOG_TAG, "Inside doInBackground method");
+       return new BookLoader(this, builtUri.toString());
 
-            if (url.length<1 || url[0]==null){
-                return null;
-            }
-            ArrayList<Books> booksArrayList=null;
-            try {
-                booksArrayList = QueryUtils.fetchBooksRequest(url[0]);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            Log.i(LOG_TAG, "Books array list doInBackground method  "+booksArrayList);
-            return booksArrayList;
-        }
+    }
 
-        @Override
-        protected void onPostExecute(ArrayList<Books> booksArrayList) {
-            booksAdapter.clear();
-            booksAdapter.addAll(booksArrayList);
+    @Override
+    public void onLoadFinished(Loader<List<Books>> loader, List<Books> bookses) {
 
+        booksAdapter.clear();
+        if (bookses != null || !bookses.isEmpty()){
+            booksAdapter.addAll(bookses);
         }
     }
+
+    @Override
+    public void onLoaderReset(Loader<List<Books>> loader) {
+
+        booksAdapter.clear();
+    }
+
+//    private class BookSearchAsyncTask extends AsyncTask<String, Void, ArrayList<Books>>{
+//        @Override
+//        protected ArrayList<Books> doInBackground(String... url) {
+//
+//            Log.i(LOG_TAG, "Inside doInBackground method");
+//
+//            if (url.length<1 || url[0]==null){
+//                return null;
+//            }
+//            ArrayList<Books> booksArrayList=null;
+//            try {
+//                booksArrayList = QueryUtils.fetchBooksRequest(url[0]);
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            Log.i(LOG_TAG, "Books array list doInBackground method  "+booksArrayList);
+//            return booksArrayList;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(ArrayList<Books> booksArrayList) {
+//            booksAdapter.clear();
+//            booksAdapter.addAll(booksArrayList);
+//
+//        }
+//    }
 
 }
