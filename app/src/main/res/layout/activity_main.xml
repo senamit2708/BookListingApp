@@ -10,34 +10,43 @@
     tools:context="com.example.senamit.booklistingapp.MainActivity">
 
 
-        <EditText
-           android:padding="20dp"
-            android:id="@+id/search_box"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:inputType="text"
-            android:maxLines="1"
-            android:background="@drawable/rounded_edittext"
-            android:hint="Subject Name" />
-
-
-    <Button
-
-
-        android:layout_width="wrap_content"
+    <SearchView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_search"
-        android:text="Search"
-        android:layout_gravity="center_horizontal"/>
+        android:id="@+id/search_bar"
+        android:autofillHints="Search book here"
+        android:background="@android:color/darker_gray"
+        android:iconifiedByDefault="false"></SearchView>
 
 
-    <Button
-        android:id="@+id/btn_searchable"
-        android:layout_margin="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="searchable button"/>
+        <!--<EditText-->
+           <!--android:padding="20dp"-->
+            <!--android:id="@+id/search_box"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:inputType="text"-->
+            <!--android:maxLines="1"-->
+            <!--android:background="@drawable/rounded_edittext"-->
+            <!--android:hint="Subject Name" />-->
+
+
+    <!--<Button-->
+
+
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/btn_search"-->
+        <!--android:text="Search"-->
+        <!--android:layout_gravity="center_horizontal"/>-->
+
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_searchable"-->
+        <!--android:layout_margin="20dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="searchable button"/>-->
 
 
 

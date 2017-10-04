@@ -25,16 +25,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".Searchable">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.Searchable"
-                android:resource="@layout/activity_searchable" />
-        </activity>
-        <activity android:name=".CheckSearchableValue"></activity>
     </application>
 
 </manifest>
