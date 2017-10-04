@@ -32,5 +32,13 @@
         android:layout_gravity="center_horizontal"/>
 
 
+    <Button
+        android:id="@+id/btn_searchable"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="searchable button"/>
+
+
 
 </LinearLayout>

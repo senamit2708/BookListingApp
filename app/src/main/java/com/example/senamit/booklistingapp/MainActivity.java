@@ -52,6 +52,17 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        // for some time only ...only for trail purpose
+
+        Button btn_searchable = (Button)findViewById(R.id.btn_searchable);
+        btn_searchable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Searchable.class);
+                startActivity(intent);
+
+            }
+        });
 
 
         Button btn_search = (Button)findViewById(R.id.btn_search);

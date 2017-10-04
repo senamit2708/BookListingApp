@@ -34,7 +34,9 @@ public class BooksList extends AppCompatActivity implements LoaderManager.Loader
 
 
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-         String name= getIntent().getExtras().getString("search");
+         String name= getIntent().getExtras().getString("search2");
+
+//       String nameTrail = Searchable.getResult();
 
 
          builtUri = Uri.parse(SAMPLE_JSON_URL).buildUpon()
@@ -75,9 +77,9 @@ public class BooksList extends AppCompatActivity implements LoaderManager.Loader
     public void onLoadFinished(Loader<List<Books>> loader, List<Books> bookses) {
 
         booksAdapter.clear();
-        if (bookses != null || !bookses.isEmpty()){
+//        if (bookses != null || !bookses.isEmpty()){
             booksAdapter.addAll(bookses);
-        }
+//        }
     }
 
     @Override
