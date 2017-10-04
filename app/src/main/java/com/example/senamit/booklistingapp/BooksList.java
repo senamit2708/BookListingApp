@@ -9,6 +9,8 @@ import android.os.AsyncTask;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,15 +24,17 @@ public class BooksList extends AppCompatActivity implements LoaderManager.Loader
 
     public static final String LOG_TAG = BooksList.class.getSimpleName();
     public static final String SAMPLE_JSON_URL = "https://www.googleapis.com/books/v1/volumes";
-    BooksAdapter booksAdapter;
+//    BooksAdapter booksAdapter;
     final String QUERY_PARAM = "q";
     final String MAX_LIMIT ="maxResults";
     Uri builtUri= null;
+    RecyclerView recyclerView;
 
+    BookCustomAdapter bookCustomAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_books_list);
+        setContentView(R.layout.recycler_book_list);
 
 
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -49,18 +53,33 @@ public class BooksList extends AppCompatActivity implements LoaderManager.Loader
 
 //        BookSearchAsyncTask bookSearchAsyncTask = new BookSearchAsyncTask();
 //        bookSearchAsyncTask.execute(builtUri.toString());
-        booksAdapter = new BooksAdapter(getBaseContext(), new ArrayList<Books>());
-        ListView listView = (ListView) (findViewById(R.id.list_item));
-        listView.setAdapter(booksAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Books selectedBook = booksAdapter.getItem(i);
-                Uri bookUri = Uri.parse(selectedBook.getUrl());
-                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, bookUri);
-                startActivity(websiteIntent);
-            }
-        });
+
+
+//        booksAdapter = new BooksAdapter(getBaseContext(), new ArrayList<Books>());
+//        ListView listView = (ListView) (findViewById(R.id.list_item));
+//        listView.setAdapter(booksAdapter);
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Books selectedBook = booksAdapter.getItem(i);
+//                Uri bookUri = Uri.parse(selectedBook.getUrl());
+//                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, bookUri);
+//                startActivity(websiteIntent);
+//            }
+//        });
+
+
+         bookCustomAdapter = new BookCustomAdapter(new ArrayList<Books>());
+        Log.i(LOG_TAG,"adpater created ");
+
+         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
+        Log.i(LOG_TAG,"recycle view tag");
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Log.i(LOG_TAG,"layoutmangercalled  ");
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(bookCustomAdapter);
+
+
 
         getLoaderManager().initLoader(0, null, this);
     }
@@ -76,16 +95,27 @@ public class BooksList extends AppCompatActivity implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<List<Books>> loader, List<Books> bookses) {
 
-        booksAdapter.clear();
+//        bookCustomAdapter.clear();
+//        bookCustomAdapter
 //        if (bookses != null || !bookses.isEmpty()){
-            booksAdapter.addAll(bookses);
+//           booksAdapter.addAll(bookses);
 //        }
+//        bookCustomAdapter.bookList.clear();
+//        bookCustomAdapter.bookList.addAll(bookses);
+     BookCustomAdapter   bookCustomAdapter1 = new BookCustomAdapter(bookses);
+        recyclerView.setAdapter(bookCustomAdapter1);
+
+
+
+
     }
 
     @Override
     public void onLoaderReset(Loader<List<Books>> loader) {
 
-        booksAdapter.clear();
+//        booksAdapter.clear();
+       bookCustomAdapter = new BookCustomAdapter(new ArrayList<Books>());
+
     }
 
 //    private class BookSearchAsyncTask extends AsyncTask<String, Void, ArrayList<Books>>{
