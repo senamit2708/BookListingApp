@@ -2,11 +2,6 @@ package com.example.senamit.booklistingapp;
 
 import android.graphics.Bitmap;
 
-
-/**
- * Created by senamit on 25/9/17.
- */
-
 public class Books {
 
     private String authors;
@@ -14,12 +9,11 @@ public class Books {
     private String url;
     private Bitmap bitmap;
 
-
     public Books(String authors, String title, String url, Bitmap bitmap) {
         this.authors = authors;
         this.title = title;
         this.url = url;
-        this.bitmap=bitmap;
+        this.bitmap = bitmap;
     }
 
     public String getAuthors() {
@@ -34,5 +28,7 @@ public class Books {
         return url;
     }
 
-    public Bitmap getBitmap() {return bitmap;}
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
 }
