@@ -1,6 +1,10 @@
 package com.example.senamit.booklistingapp;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +22,10 @@ import java.util.zip.Inflater;
 public class BookCustomAdapter extends RecyclerView.Adapter<BookCustomAdapter.ViewHolder>{
 
     List<Books> bookList;
+
+    Context context;
+
+    public static final String LOG_TAG = BookCustomAdapter.class.getSimpleName();
 
     public BookCustomAdapter(List<Books> bookList) {
 
@@ -41,6 +49,17 @@ public class BookCustomAdapter extends RecyclerView.Adapter<BookCustomAdapter.Vi
 
         holder.author_name.setText(bookList.get(position).getAuthors());
         holder.title.setText(bookList.get(position).getTitle());
+      final Uri link1=  Uri.parse( bookList.get(position).getUrl());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW,link1);
+                context.startActivity(websiteIntent);
+//               startActivity(websiteIntent);
+                Log.i(LOG_TAG, "INSIDE ON CLICK   "+ link1);
+            }
+        });
 
 
     }
@@ -55,6 +74,7 @@ public class BookCustomAdapter extends RecyclerView.Adapter<BookCustomAdapter.Vi
         ImageView imageView;
         TextView author_name;
         TextView title;
+        Uri link;
 
 
 
@@ -64,6 +84,8 @@ public class BookCustomAdapter extends RecyclerView.Adapter<BookCustomAdapter.Vi
             imageView= (ImageView)itemView.findViewById(R.id.image);
             author_name = (TextView)itemView.findViewById(R.id.txt_author);
             title= (TextView)itemView.findViewById(R.id.txt_title);
+            context = itemView.getContext();
+
         }
     }
 }

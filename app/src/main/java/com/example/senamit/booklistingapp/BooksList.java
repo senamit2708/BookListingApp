@@ -45,7 +45,7 @@ public class BooksList extends AppCompatActivity implements LoaderManager.Loader
 
          builtUri = Uri.parse(SAMPLE_JSON_URL).buildUpon()
                 .appendQueryParameter(QUERY_PARAM,name )
-                .appendQueryParameter(MAX_LIMIT, "2").build();
+                .appendQueryParameter(MAX_LIMIT, "10").build();
 
         Log.i(LOG_TAG,"the name is  "+ name);
 
@@ -78,6 +78,13 @@ public class BooksList extends AppCompatActivity implements LoaderManager.Loader
         Log.i(LOG_TAG,"layoutmangercalled  ");
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(bookCustomAdapter);
+
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(LOG_TAG, "inside onclicklistener");
+            }
+        });
 
 
 
