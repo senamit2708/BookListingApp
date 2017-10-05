@@ -2,14 +2,14 @@ package com.example.senamit.booklistingapp;
 
 import android.graphics.Bitmap;
 
-public class Books {
+public class Book {
 
     private String authors;
     private String title;
     private String url;
     private Bitmap bitmap;
 
-    public Books(String authors, String title, String url, Bitmap bitmap) {
+    public Book(String authors, String title, String url, Bitmap bitmap) {
         this.authors = authors;
         this.title = title;
         this.url = url;

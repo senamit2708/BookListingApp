@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +14,18 @@ import java.util.List;
 
 public class BookCustomAdapter extends RecyclerView.Adapter<BookCustomAdapter.ViewHolder> {
 
-    private List<Books> bookList;
+    private List<Book> bookList;
     private Context context;
 
     private static final String LOG_TAG = BookCustomAdapter.class.getSimpleName();
 
-    public BookCustomAdapter(List<Books> bookList) {
+    public BookCustomAdapter(List<Book> bookList) {
         this.bookList = bookList;
     }
 
     @Override
     public BookCustomAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_books_items, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_book_item, parent, false);
         return new ViewHolder(itemView);
     }
 

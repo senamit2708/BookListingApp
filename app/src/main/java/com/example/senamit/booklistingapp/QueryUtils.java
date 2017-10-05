@@ -27,11 +27,11 @@ public class QueryUtils {
 
     private QueryUtils() {}
 
-    public static ArrayList<Books> extractFeatureFromJSON(String jsonResponse) throws JSONException {
+    public static ArrayList<Book> extractFeatureFromJSON(String jsonResponse) throws JSONException {
         if (TextUtils.isEmpty(jsonResponse)) {
             return null;
         }
-        ArrayList<Books> books = new ArrayList<Books>();
+        ArrayList<Book> books = new ArrayList<Book>();
         String authors = null;
         String title = null;
         Bitmap bmp = null;
@@ -62,7 +62,7 @@ public class QueryUtils {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            books.add(new Books(title, output.toString(), url, bmp));
+            books.add(new Book(title, output.toString(), url, bmp));
         }
         return books;
     }
@@ -85,10 +85,12 @@ public class QueryUtils {
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
         String jsonResponse = null;
+        int readTimeOutValue=10000;
+        int connectionTimeOutValue = 15000;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
+            urlConnection.setReadTimeout(readTimeOutValue);
+            urlConnection.setConnectTimeout(connectionTimeOutValue);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
             if (urlConnection.getResponseCode() == 200) {
@@ -125,7 +127,7 @@ public class QueryUtils {
         return output.toString();
     }
 
-    public static ArrayList<Books> fetchBooksRequest(String requestUrl) throws JSONException {
+    public static ArrayList<Book> fetchBooksRequest(String requestUrl) throws JSONException {
         URL url = createURL(requestUrl);
         String jsonResponse = null;
         try {
@@ -134,7 +136,7 @@ public class QueryUtils {
             Log.e(LOG_TAG, "Problem making HTTP request " + e);
         }
 
-        ArrayList<Books> books = extractFeatureFromJSON(jsonResponse);
+        ArrayList<Book> books = extractFeatureFromJSON(jsonResponse);
         Log.i(LOG_TAG, "Inside the fetchBooksRequest method");
         return books;
     }

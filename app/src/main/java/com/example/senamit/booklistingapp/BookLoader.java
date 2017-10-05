@@ -6,7 +6,7 @@ import android.util.Log;
 import org.json.JSONException;
 import java.util.List;
 
-public class BookLoader extends AsyncTaskLoader<List<Books>> {
+public class BookLoader extends AsyncTaskLoader<List<Book>> {
 
     private static final String LOG_TAG = BookLoader.class.getSimpleName();
     private String url = null;
@@ -21,16 +21,16 @@ public class BookLoader extends AsyncTaskLoader<List<Books>> {
     }
 
     @Override
-    public List<Books> loadInBackground() {
+    public List<Book> loadInBackground() {
         if (url == null) {
             return null;
         }
-        List<Books> booksList = null;
+        List<Book> bookList = null;
         try {
-            booksList = QueryUtils.fetchBooksRequest(url);
+            bookList = QueryUtils.fetchBooksRequest(url);
         } catch (JSONException e) {
             Log.e(LOG_TAG, "problem in loading Load In background data"+ e);
         }
-        return booksList;
+        return bookList;
     }
 }

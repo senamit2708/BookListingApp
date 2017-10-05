@@ -11,9 +11,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BooksList extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Books>> {
+public class BookList extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Book>> {
 
-    private static final String LOG_TAG = BooksList.class.getSimpleName();
+    private static final String LOG_TAG = BookList.class.getSimpleName();
     private static final String SAMPLE_JSON_URL = "https://www.googleapis.com/books/v1/volumes";
     final String QUERY_PARAM = "q";
     final String MAX_LIMIT = "maxResults";
@@ -34,7 +34,7 @@ public class BooksList extends AppCompatActivity implements LoaderManager.Loader
         Log.i(LOG_TAG, "the name is  " + name);
         Log.i(LOG_TAG, "the uri is  " + builtUri.toString());
 
-        bookCustomAdapter = new BookCustomAdapter(new ArrayList<Books>());
+        bookCustomAdapter = new BookCustomAdapter(new ArrayList<Book>());
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -44,19 +44,19 @@ public class BooksList extends AppCompatActivity implements LoaderManager.Loader
     }
 
     @Override
-    public Loader<List<Books>> onCreateLoader(int i, Bundle bundle) {
+    public Loader<List<Book>> onCreateLoader(int i, Bundle bundle) {
         return new BookLoader(this, builtUri.toString());
     }
 
     @Override
-    public void onLoadFinished(Loader<List<Books>> loader, List<Books> bookses) {
+    public void onLoadFinished(Loader<List<Book>> loader, List<Book> bookses) {
         BookCustomAdapter bookCustomAdapter1 = new BookCustomAdapter(bookses);
         recyclerView.setAdapter(bookCustomAdapter1);
     }
 
     @Override
-    public void onLoaderReset(Loader<List<Books>> loader) {
-        bookCustomAdapter = new BookCustomAdapter(new ArrayList<Books>());
+    public void onLoaderReset(Loader<List<Book>> loader) {
+        bookCustomAdapter = new BookCustomAdapter(new ArrayList<Book>());
     }
 
 }

@@ -3,7 +3,6 @@ package com.example.senamit.booklistingapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     private void intentStarter() {
-        Intent intent = new Intent(MainActivity.this, BooksList.class);
+        Intent intent = new Intent(MainActivity.this, BookList.class);
         intent.putExtra("search2", result);
         startActivity(intent);
     }
