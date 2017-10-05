@@ -33,14 +33,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
     private void intentStarter() {
         Intent intent = new Intent(MainActivity.this, BooksList.class);
-        Log.i(LOG_TAG, "intent starter   " + result);
         intent.putExtra("search2", result);
         startActivity(intent);
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        Log.i(LOG_TAG, "inside onquerytextschange  " + newText);
         return false;
     }
 }

@@ -5,7 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class CheckNetwork {
-    public static final String LOG_TAG = CheckNetwork.class.getSimpleName();
+    private static final String LOG_TAG = CheckNetwork.class.getSimpleName();
     public static boolean isInternetAvailable(Context context){
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();

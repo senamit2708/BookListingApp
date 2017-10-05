@@ -10,16 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.List;
 
 
 public class BookCustomAdapter extends RecyclerView.Adapter<BookCustomAdapter.ViewHolder> {
 
-    List<Books> bookList;
-    Context context;
+    private List<Books> bookList;
+    private Context context;
 
-    public static final String LOG_TAG = BookCustomAdapter.class.getSimpleName();
+    private static final String LOG_TAG = BookCustomAdapter.class.getSimpleName();
 
     public BookCustomAdapter(List<Books> bookList) {
         this.bookList = bookList;

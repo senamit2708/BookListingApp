@@ -8,19 +8,18 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class BooksList extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Books>> {
 
-    public static final String LOG_TAG = BooksList.class.getSimpleName();
-    public static final String SAMPLE_JSON_URL = "https://www.googleapis.com/books/v1/volumes";
+    private static final String LOG_TAG = BooksList.class.getSimpleName();
+    private static final String SAMPLE_JSON_URL = "https://www.googleapis.com/books/v1/volumes";
     final String QUERY_PARAM = "q";
     final String MAX_LIMIT = "maxResults";
-    Uri builtUri = null;
-    RecyclerView recyclerView;
-    BookCustomAdapter bookCustomAdapter;
+    private Uri builtUri = null;
+    private RecyclerView recyclerView;
+    private BookCustomAdapter bookCustomAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,7 @@ public class BooksList extends AppCompatActivity implements LoaderManager.Loader
         String name = getIntent().getExtras().getString("search2");
         builtUri = Uri.parse(SAMPLE_JSON_URL).buildUpon()
                 .appendQueryParameter(QUERY_PARAM, name)
-                .appendQueryParameter(MAX_LIMIT, "2").build();
+                .appendQueryParameter(MAX_LIMIT, "10").build();
 
         Log.i(LOG_TAG, "the name is  " + name);
         Log.i(LOG_TAG, "the uri is  " + builtUri.toString());

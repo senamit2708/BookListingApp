@@ -3,15 +3,13 @@ package com.example.senamit.booklistingapp;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
-
 import org.json.JSONException;
-
 import java.util.List;
 
 public class BookLoader extends AsyncTaskLoader<List<Books>> {
 
-    public static final String LOG_TAG = BookLoader.class.getSimpleName();
-    public String url = null;
+    private static final String LOG_TAG = BookLoader.class.getSimpleName();
+    private String url = null;
 
     public BookLoader(Context context, String url) {
         super(context);
@@ -24,7 +22,6 @@ public class BookLoader extends AsyncTaskLoader<List<Books>> {
 
     @Override
     public List<Books> loadInBackground() {
-        Log.e(LOG_TAG, "indisde on load in background");
         if (url == null) {
             return null;
         }
@@ -32,7 +29,7 @@ public class BookLoader extends AsyncTaskLoader<List<Books>> {
         try {
             booksList = QueryUtils.fetchBooksRequest(url);
         } catch (JSONException e) {
-            Log.e(LOG_TAG, "problem in loading Load In background data");
+            Log.e(LOG_TAG, "problem in loading Load In background data"+ e);
         }
         return booksList;
     }

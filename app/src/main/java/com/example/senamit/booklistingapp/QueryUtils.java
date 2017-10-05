@@ -23,10 +23,9 @@ import java.util.ArrayList;
 
 public class QueryUtils {
 
-    public static final String LOG_TAG = QueryUtils.class.getSimpleName();
+    private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
-    private QueryUtils() {
-    }
+    private QueryUtils() {}
 
     public static ArrayList<Books> extractFeatureFromJSON(String jsonResponse) throws JSONException {
         if (TextUtils.isEmpty(jsonResponse)) {
