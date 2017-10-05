@@ -3,4 +3,5 @@
     <string name="internetAlertMessage">Internet Connection is off.....plz on the Internt Connection</string>
     <string name="firealert">ok</string>
     <string name="interntAlertTitle">Alert Message</string>
+    <string name="book_search">Subject name of book</string>
 </resources>

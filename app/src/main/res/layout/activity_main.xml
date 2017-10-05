@@ -5,17 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="5"
+
     android:gravity="center_vertical"
     tools:context="com.example.senamit.booklistingapp.MainActivity">
 
 
     <SearchView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/search_bar"
-        android:autofillHints="Search book here"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/holo_blue_bright"
+        android:queryHint="@string/book_search"
         android:iconifiedByDefault="false"></SearchView>
 
 
@@ -29,6 +31,8 @@
             <!--android:maxLines="1"-->
             <!--android:background="@drawable/rounded_edittext"-->
             <!--android:hint="Subject Name" />-->
+
+    <!--android:autofillHints="Search book here"-->
 
 
     <!--<Button-->
